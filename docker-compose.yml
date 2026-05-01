@@ -5,10 +5,11 @@ services:
       dockerfile: docker/server.Dockerfile
     ports:
       - "3000:3000"
+    env_file:
+      - apps/server/.env
     environment:
       NODE_ENV: production
       PORT: 3000
       PUBLIC_DIR: /app/public
-      SUBCONVERTER_URL: ${SUBCONVERTER_URL:?Set SUBCONVERTER_URL in .env}
     volumes:
       - ./public:/app/public:ro

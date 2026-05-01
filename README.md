@@ -15,7 +15,7 @@ docker        Docker build and nginx config
 
 ```bash
 pnpm install
-cp .env.example .env
+cp apps/server/.env.example apps/server/.env
 pnpm dev
 ```
 
@@ -62,12 +62,12 @@ Convert a subscription:
 GET /api/config/subscribe?key=example-key
 ```
 
-The server calls `${SUBCONVERTER_URL}/sub?target=clash&url=...` and returns the converted content directly. `SUBCONVERTER_URL` is required and should be set in `.env` or the server environment.
+The server calls `${SUBCONVERTER_URL}/sub?target=clash&url=...` and returns the converted content directly. `SUBCONVERTER_URL` is required and should be set in `apps/server/.env` or the server environment.
 
 ## Docker Compose
 
 ```bash
-cp .env.example .env
+cp apps/server/.env.example apps/server/.env
 docker compose up --build
 ```
 
@@ -92,7 +92,7 @@ docker build -f docker/server.Dockerfile -t ghcr.io/YOUR_GITHUB_USERNAME/sub-con
 docker push ghcr.io/YOUR_GITHUB_USERNAME/sub-convert-server:latest
 ```
 
-On the server, use the pushed image in `docker-compose.yml`, create `.env`, and keep `public/config.json` only on the server:
+On the server, use the pushed image in `docker-compose.yml`, create `apps/server/.env`, and keep `public/config.json` only on the server:
 
 ```yaml
 services:
