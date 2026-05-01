@@ -71,8 +71,6 @@ cp .env.example .env
 docker compose up --build
 ```
 
-Web: <http://localhost:8080>
-
 Server: <http://localhost:3000>
 
 To use a different config directory, change the server volume:
@@ -84,19 +82,17 @@ volumes:
 
 ## GitHub Container Registry
 
-Build and push images to GHCR:
+Build and push the server image to GHCR:
 
 ```bash
 echo "$GITHUB_TOKEN" | docker login ghcr.io -u YOUR_GITHUB_USERNAME --password-stdin
 
 docker build -f docker/server.Dockerfile -t ghcr.io/YOUR_GITHUB_USERNAME/sub-convert-server:latest .
-docker build -f docker/web.Dockerfile -t ghcr.io/YOUR_GITHUB_USERNAME/sub-convert-web:latest .
 
 docker push ghcr.io/YOUR_GITHUB_USERNAME/sub-convert-server:latest
-docker push ghcr.io/YOUR_GITHUB_USERNAME/sub-convert-web:latest
 ```
 
-On the server, use the pushed images in `docker-compose.yml`, create `.env`, and keep `public/config.json` only on the server:
+On the server, use the pushed image in `docker-compose.yml`, create `.env`, and keep `public/config.json` only on the server:
 
 ```yaml
 services:
@@ -111,11 +107,4 @@ services:
       SUBCONVERTER_URL: ${SUBCONVERTER_URL:?Set SUBCONVERTER_URL in .env}
     volumes:
       - ./public:/app/public:ro
-
-  web:
-    image: ghcr.io/YOUR_GITHUB_USERNAME/sub-convert-web:latest
-    ports:
-      - "8080:80"
-    depends_on:
-      - server
 ```
