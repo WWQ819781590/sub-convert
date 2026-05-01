@@ -1,0 +1,12 @@
+node_modules
+apps/*/dist
+*.tsbuildinfo
+.env
+.env.*
+!/.env.example
+public/config.json
+.git
+.gitignore
+README.md
+*.log
+coverage

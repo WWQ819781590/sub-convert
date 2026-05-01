@@ -1,0 +1,6 @@
+{
+  "example-key": {
+    "url": "https://example.com/subscription",
+    "target": "clash"
+  }
+}

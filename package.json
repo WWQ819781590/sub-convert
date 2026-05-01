@@ -1,0 +1,19 @@
+{
+  "name": "sub-convert",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.25.0",
+  "scripts": {
+    "dev": "pnpm -r --parallel dev",
+    "dev:server": "pnpm --filter @sub-convert/server dev",
+    "dev:web": "pnpm --filter @sub-convert/web dev",
+    "build": "pnpm -r build",
+    "build:server": "pnpm --filter @sub-convert/server build",
+    "build:web": "pnpm --filter @sub-convert/web build",
+    "start:server": "pnpm --filter @sub-convert/server start",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
